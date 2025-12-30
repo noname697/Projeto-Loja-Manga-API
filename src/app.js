@@ -6,6 +6,8 @@ const rotasCompras = require("./routes/comprasRotas.js");
 const rotasUsuarios = require("./routes/usuariosRotas.js");
 const rotasProdutos = require("./routes/produtosRotas.js");
 
+app.use(express.json());
+
 app.use("/compras", rotasCompras);
 app.use("/usuarios", rotasUsuarios);
 app.use("/produtos", rotasProdutos);

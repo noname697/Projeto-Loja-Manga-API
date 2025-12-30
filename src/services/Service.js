@@ -10,6 +10,10 @@ class Service {
   getUm = async (id) => {
     return this.model.findByPk(id);
   };
+
+  postRegistro = async (dados) => {
+    return this.model.create(dados);
+  };
 }
 
 module.exports = Service;

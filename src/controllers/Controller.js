@@ -1,4 +1,4 @@
-const Service = require("../services/Service.js");
+const Service = require("../services/ServiceCompra.js");
 
 class Controller {
   constructor(model = String) {
@@ -31,6 +31,16 @@ class Controller {
     try {
       const registro = await this.service.postRegistro(req.body);
       return res.status(200).json({ "Registro Criado": registro });
+    } catch (e) {
+      return res.status(500).json({ erro: e.message });
+    }
+  };
+
+  atualizaRegistro = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const registro = await this.service.atualizarCompra(id, req.body);
+      return res.status(200).json({ "Registro Atualizado": registro });
     } catch (e) {
       return res.status(500).json({ erro: e.message });
     }

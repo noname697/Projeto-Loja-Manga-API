@@ -48,6 +48,49 @@ class ServiceCompra extends Service {
       throw error;
     }
   };
+
+  atualizarCompra = async (id, dadosAtualizados) => {
+    const { codigo_compra, endereco, valor, status, produtos } =
+      dadosAtualizados;
+    const t = await sequelize.transaction();
+
+    try {
+      // 1. Verificar se a compra existe
+      const compra = await this.model.findByPk(id);
+      if (!compra) throw new Error("Compra não encontrada");
+
+      // 2. Atualizar dados básicos da Compra
+      await compra.update(
+        { codigo_compra, endereco, valor, status },
+        { transaction: t }
+      );
+
+      // 3. Lidar com os Produtos (se enviados no PUT)
+      if (produtos && produtos.length > 0) {
+        // A) Remove todos os itens antigos desta compra na tabela intermediária
+        await CompraProdutos.destroy({
+          where: { compra_id: id },
+          transaction: t,
+        });
+
+        // B) Prepara os novos itens
+        const novosItens = produtos.map((item) => ({
+          compra_id: id,
+          produto_id: item.produto_id,
+          quantidade: item.quantidade,
+        }));
+
+        // C) Insere os novos itens
+        await CompraProdutos.bulkCreate(novosItens, { transaction: t });
+      }
+
+      await t.commit();
+      return compra;
+    } catch (error) {
+      await t.rollback();
+      throw error;
+    }
+  };
 }
 
 module.exports = ServiceCompra;

@@ -14,6 +14,13 @@ class Service {
   postRegistro = async (dados) => {
     return this.model.create(dados);
   };
+
+  putRegistro = async (id, dados) => {
+    const compra = await this.model.findByPk(id);
+    await compra.update(dados);
+
+    return compra;
+  };
 }
 
 module.exports = Service;

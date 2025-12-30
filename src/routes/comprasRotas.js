@@ -14,4 +14,18 @@ router.post("/", (req, res) => {
   controllerCompra.criarNovaCompra(req, res);
 });
 
+router.put("/:id", (req, res) => {
+  controllerCompra.atualizaRegistro(req, res);
+});
+/* Exemplo de body para PUT
+  {
+    "endereco": "Rua dos testes",
+		"valor": 36,
+		"codigo_compra": 11,
+    "produtos": [
+      { "produto_id": 6, "quantidade": 1 }
+    ]
+  }
+*/
+
 module.exports = router;

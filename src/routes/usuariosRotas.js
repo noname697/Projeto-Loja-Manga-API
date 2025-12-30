@@ -16,4 +16,8 @@ router.post("/", (req, res) => {
   controller.criaRegistro(req, res);
 });
 
+router.put("/:id", (req, res) => {
+  controller.atualizaRegistro(req, res);
+});
+
 module.exports = router;

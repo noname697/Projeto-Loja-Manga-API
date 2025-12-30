@@ -1,8 +1,9 @@
 const ServiceCompra = require("../services/ServiceCompra.js");
 const Controller = require("./Controller.js");
+const { Compra } = require("../database/models/index.js");
 
 class ControllerCompra extends Controller {
-  constructor(model) {
+  constructor(model = Compra) {
     super(model);
   }
 

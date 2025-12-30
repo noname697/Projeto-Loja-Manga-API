@@ -91,6 +91,26 @@ class ServiceCompra extends Service {
       throw error;
     }
   };
+
+  excluirCompra = async (id) => {
+    const t = await sequelize.transaction();
+
+    try {
+      const compra = await this.model.findByPk(id);
+
+      if (!compra) {
+        throw new Error("Compra não encontrada");
+      }
+
+      await compra.destroy({ transaction: t });
+
+      await t.commit();
+      return true;
+    } catch (error) {
+      await t.rollback();
+      throw error;
+    }
+  };
 }
 
 module.exports = ServiceCompra;

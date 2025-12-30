@@ -21,6 +21,10 @@ class Service {
 
     return compra;
   };
+
+  deleteRegistro = async (id) => {
+    await this.model.destroy({ where: { id: id } });
+  };
 }
 
 module.exports = Service;

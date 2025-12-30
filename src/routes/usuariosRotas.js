@@ -20,4 +20,8 @@ router.put("/:id", (req, res) => {
   controller.atualizaRegistro(req, res);
 });
 
+router.delete("/:id", (req, res) => {
+  controller.excluiRegistro(req, res);
+});
+
 module.exports = router;

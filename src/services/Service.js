@@ -3,8 +3,12 @@ class Service {
     this.model = model;
   }
 
-  getTodos = async (model) => {
-    return model.findAll();
+  getTodos = async () => {
+    return this.model.findAll();
+  };
+
+  getUm = async (id) => {
+    return this.model.findByPk(id);
   };
 }
 

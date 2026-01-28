@@ -3,6 +3,9 @@ const router = express.Router();
 const Controller = require("../controllers/Controller.js");
 const { Produto } = require("../database/models/index.js");
 const controller = new Controller(Produto);
+const authMiddleware = require("../middlewares/auth.js");
+
+router.use(authMiddleware);
 
 router.get("/", (req, res) => {
   controller.pegaTodos(req, res);

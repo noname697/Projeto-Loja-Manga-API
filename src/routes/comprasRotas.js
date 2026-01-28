@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const ControllerCompra = require("../controllers/ControllerCompra.js");
 const controllerCompra = new ControllerCompra();
+const authMiddleware = require("../middlewares/auth.js");
+
+router.use(authMiddleware);
 
 router.get("/", (req, res) => {
   controllerCompra.pegaTodos(req, res);

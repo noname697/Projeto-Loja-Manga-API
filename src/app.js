@@ -10,17 +10,17 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+const rotaLogin = require("./routes/loginRota.js");
 const rotasCompras = require("./routes/comprasRotas.js");
 const rotasUsuarios = require("./routes/usuariosRotas.js");
 const rotasProdutos = require("./routes/produtosRotas.js");
-const rotaLogin = require("./routes/loginRota.js");
 
 app.use(express.json());
 
+app.use("/login", rotaLogin);
 app.use("/compras", rotasCompras);
 app.use("/usuarios", rotasUsuarios);
 app.use("/produtos", rotasProdutos);
-app.use("/login", rotaLogin);
 
 app.listen(process.env.PORT, () => {
   console.log(`Ouvindo porta: ${process.env.PORT}`);

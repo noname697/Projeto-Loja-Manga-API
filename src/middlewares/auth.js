@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
 
   if (!authHeader) return res.status(401).json({ erro: "Token não fornecido" });
 
-  const [, token] = authHeader.split("");
+  const [, token] = authHeader.split(" ");
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);

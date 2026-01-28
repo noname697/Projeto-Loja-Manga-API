@@ -13,4 +13,4 @@ class SessaoController {
   };
 }
 
-module.exports = new SessaoController();
+module.exports = SessaoController;

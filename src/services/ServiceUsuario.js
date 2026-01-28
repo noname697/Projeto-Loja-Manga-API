@@ -1,5 +1,7 @@
+const Service = require("./Service");
+
 class ServiceUsuario extends Service {
-  constructor(model = Usuario) {
+  constructor(model) {
     super(model);
   }
 

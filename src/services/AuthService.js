@@ -21,7 +21,7 @@ class AuthService {
       expiresIn: "1d",
     });
     return {
-      usuario: { id: usuario.id, nome: usuario.nome, email: usuario.email },
+      user: { id: usuario.id, nome: usuario.nome, email: usuario.email, foto: usuario.foto },
       token,
     };
   };
